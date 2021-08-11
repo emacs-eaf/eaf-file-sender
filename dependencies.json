@@ -1,0 +1,19 @@
+{
+    "pacman": [
+        "python-qrcode"
+    ],
+    "apt": [
+        "python3-qrcode"
+    ],
+    "dnf": [
+        "python3-qrcode"
+    ],
+    "pkg": [
+        "py38-qrcode"
+    ],
+    "pip": {
+        "win32": [
+            "qrcode"
+        ]
+    }
+}

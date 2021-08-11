@@ -29,7 +29,6 @@ import http.server as BaseHTTPServer
 import os
 import qrcode
 import shutil
-import sys
 import threading
 import socket
 from urllib.parse import quote
