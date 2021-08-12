@@ -99,5 +99,8 @@ the file at current cursor position in dired."
   (interactive)
   (eaf-file-sender-qrcode (dired-get-filename)))
 
+(setq eaf-file-sender-module-path (concat (file-name-directory load-file-name) "buffer.py"))
+(add-to-list 'eaf-app-module-path-alist '("file-sender" . eaf-file-sender-module-path))
+
 (provide 'eaf-file-sender)
 ;;; eaf-file-sender ends here
