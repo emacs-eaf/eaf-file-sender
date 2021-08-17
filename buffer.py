@@ -37,9 +37,7 @@ class AppBuffer(Buffer):
     def __init__(self, buffer_id, url, arguments):
         Buffer.__init__(self, buffer_id, url, arguments, False)
 
-        self.add_widget(FileTransferWidget(url,
-                                           get_emacs_var("eaf-emacs-theme-background-color"),
-                                           get_emacs_var("eaf-emacs-theme-foreground-color")))
+        self.add_widget(FileTransferWidget(url, get_emacs_var("eaf-emacs-theme-foreground-color")))
 
 class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
@@ -84,7 +82,7 @@ class Image(qrcode.image.base.BaseImage):
         pass
 
 class FileTransferWidget(QWidget):
-    def __init__(self, url, background_color, foreground_color):
+    def __init__(self, url, foreground_color):
         QWidget.__init__(self)
         self.setStyleSheet("background-color: transparent;")
 
