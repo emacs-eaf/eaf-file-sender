@@ -24,7 +24,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
 from core.buffer import Buffer
-from core.utils import get_free_port, get_local_ip, message_to_emacs, get_emacs_var
+from core.utils import get_free_port, get_local_ip, message_to_emacs
 import http.server as BaseHTTPServer
 import os
 import qrcode
@@ -37,7 +37,7 @@ class AppBuffer(Buffer):
     def __init__(self, buffer_id, url, arguments):
         Buffer.__init__(self, buffer_id, url, arguments, False)
 
-        self.add_widget(FileTransferWidget(url, get_emacs_var("eaf-emacs-theme-foreground-color")))
+        self.add_widget(FileTransferWidget(url, self.theme_foreground_color))
 
 class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
