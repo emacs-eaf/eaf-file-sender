@@ -21,7 +21,7 @@
 
 from PyQt6 import QtGui, QtCore
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QColor, QFont
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout
 from core.buffer import Buffer
 from core.utils import get_free_port, get_local_ip, message_to_emacs
