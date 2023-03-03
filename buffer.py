@@ -25,6 +25,7 @@ from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout
 from core.buffer import Buffer
 from core.utils import get_free_port, get_local_ip, message_to_emacs
+from core.utils import get_emacs_theme_foreground, get_emacs_theme_background, interactive
 import http.server as BaseHTTPServer
 import os
 import qrcode
@@ -38,6 +39,13 @@ class AppBuffer(Buffer):
         Buffer.__init__(self, buffer_id, url, arguments, False)
 
         self.add_widget(FileTransferWidget(url, self.theme_foreground_color))
+
+    @interactive
+    def update_theme(self):
+        self.theme_foreground_color = get_emacs_theme_foreground()
+        self.theme_background_color = get_emacs_theme_background()
+
+        self.buffer_widget.change_color(self.theme_background_color, self.theme_foreground_color)
 
 class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
@@ -145,3 +153,8 @@ class FileTransferWidget(QWidget):
         self.sender_thread.stop()
 
         super().destroy_buffer()
+
+    def change_color(self, background_color, foreground_color):
+        self.setStyleSheet("background-color: {};".format(background_color))
+        self.file_name_label.setStyleSheet("color: {}".format(foreground_color))
+        self.notify_label.setStyleSheet("color: {}".format(foreground_color))
