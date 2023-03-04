@@ -42,8 +42,7 @@ class AppBuffer(Buffer):
 
     @interactive
     def update_theme(self):
-        self.theme_foreground_color = get_emacs_theme_foreground()
-        self.theme_background_color = get_emacs_theme_background()
+        super().update_theme()
 
         self.buffer_widget.change_color(self.theme_background_color, self.theme_foreground_color)
 
