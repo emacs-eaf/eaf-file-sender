@@ -19,19 +19,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt6 import QtGui, QtCore
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout
-from core.buffer import Buffer
-from core.utils import *
 import http.server as BaseHTTPServer
 import os
-import qrcode
 import shutil
-import threading
 import socket
+import threading
 from urllib.parse import quote
+
+import qrcode
+from core.buffer import Buffer
+from core.utils import *
+from PyQt6 import QtCore, QtGui
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
+from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget
+
 
 class AppBuffer(Buffer):
     def __init__(self, buffer_id, url, arguments):
