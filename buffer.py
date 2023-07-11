@@ -26,7 +26,6 @@ import socket
 import threading
 from urllib.parse import quote
 
-import qrcode
 from core.buffer import Buffer
 from core.utils import *
 from PyQt6 import QtCore, QtGui
@@ -65,29 +64,6 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         except socket.error:
             # Don't need handle socket error.
             pass
-
-class Image(qrcode.image.base.BaseImage):
-    def __init__(self, border, width, box_size):
-        self.border = border
-        self.width = width
-        self.box_size = box_size
-        size = (width + border * 2) * box_size
-        self._image = QtGui.QImage(size, size, QtGui.QImage.Format.Format_RGB16)
-        self._image.fill(QtCore.Qt.GlobalColor.white)
-
-    def pixmap(self):
-        return QtGui.QPixmap.fromImage(self._image)
-
-    def drawrect(self, row, col):
-        painter = QtGui.QPainter(self._image)
-        painter.fillRect(
-            (col + self.border) * self.box_size,
-            (row + self.border) * self.box_size,
-            self.box_size, self.box_size,
-            QtCore.Qt.GlobalColor.black)
-
-    def save(self, stream, kind=None):
-        pass
 
 class FileTransferWidget(QWidget):
     def __init__(self, url, foreground_color):
@@ -128,7 +104,7 @@ class FileTransferWidget(QWidget):
         self.start_server(file_path)
 
     def set_address(self, address):
-        self.qrcode_label.setPixmap(qrcode.make(address, image_factory=Image).pixmap())
+        self.qrcode_label.setPixmap(get_qrcode_pixmap(address))
 
     def start_server(self, filename):
         global local_file_path
